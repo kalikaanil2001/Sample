@@ -20,5 +20,6 @@ public class RouterConfig {
                 .PUT("/users/{id}", handler::update)
                 .DELETE("/users/{id}", handler::delete)
                 .build();
+
     }
 }
