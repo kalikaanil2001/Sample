@@ -5,17 +5,21 @@ import com.perficient.Sample.exception.UserNotFoundException;
 import com.perficient.Sample.model.User;
 import com.perficient.Sample.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
 
+
     public Mono<User> createUser(UserDto dto) {
+        log.info("user creating");
         User user = User.builder()
                 .name(dto.getName())
                 .email(dto.getEmail())
@@ -30,6 +34,7 @@ public class UserService {
     }
 
     public Flux<User> getAllUsers() {
+        log.info("fetching all users");
         return userRepository.findAll();
     }
 
